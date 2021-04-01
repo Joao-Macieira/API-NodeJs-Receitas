@@ -3,9 +3,13 @@ const { Router } = require('express');
 const router = Router();
 
 const CategoryController = require('./app/controllers/CategoryController');
+const LoginController = require('./app/controllers/LoginController');
 const UserController = require('./app/controllers/UserController');
 
 router.get('/', (request, response) => response.json('Funcionou !'));
+
+// Rotas de Login
+router.post('/login', LoginController.index);
 
 // Rotas de Categorias
 router.get('/category', CategoryController.index);

@@ -36,16 +36,9 @@ class UserController {
 
     const date = new Date();
 
-    const day = (date.getDate()) > 10 ? (date.getDate()) : `0${(date.getDate())}`;
-    const month = (date.getMonth() + 1) > 10 ? (date.getMonth() + 1) : `0${date.getMonth() + 1}`;
-    const year = date.getFullYear() > 10 ? (date.getFullYear()) : `0${(date.getFullYear())}`;
-    const hour = date.getHours() > 10 ? (date.getHours()) : `0${(date.getHours())}`;
-    const minute = date.getMinutes() > 10 ? (date.getMinutes()) : `0${(date.getMinutes())}`;
-    const second = date.getSeconds() > 10 ? (date.getSeconds()) : `0${(date.getSeconds())}`;
+    await User.create(name, login, passwordHash, date);
 
-    const formatDate = `${year}/${month}/${day} ${hour - 3}:${minute}:${second}`;
-
-    const newUser = await User.create(name, login, passwordHash, formatDate);
+    const newUser = await User.findByLogin(login);
 
     return response.json({ newUser });
   }
