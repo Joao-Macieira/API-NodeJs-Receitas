@@ -11,19 +11,19 @@ class LoginController {
 
     const user = await User.findByLogin(login);
 
-    if (!user) return response.json({ error: 'Usuário e/ou senha não incorretos' });
+    if (!user) return response.json({ error: 'Usuário e/ou senha incorretos' });
 
-    const { id } = user;
+    const { id, nome } = user;
 
-    const matchPass = await bcrypt.compare(password, user.password);
+    const matchPass = await bcrypt.compare(password, user.senha);
 
-    if (!matchPass) return response.json({ error: 'E-mail e/ou senha não existe' });
+    if (!matchPass) return response.json({ error: 'Usuário e/ou senha incorretos' });
 
     const token = jwt.sign({ id, login }, process.env.TOKEN_SECRET, {
       expiresIn: process.env.TOKEN_EXPIRATION,
     });
 
-    return response.json(token, user);
+    return response.json({ token, nome, login });
   }
 }
 
