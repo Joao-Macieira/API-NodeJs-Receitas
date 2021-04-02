@@ -10,12 +10,19 @@ class Recipes {
   }
 
   async create(
-    userId, categoryId, name, preparationTime, portions, method, ingredients,
+    userId,
+    categoryId,
+    name = null,
+    preparationTime = null,
+    portions = null,
+    method,
+    ingredients = null,
+    createdAt,
   ) {
     const row = await db.query(`
-    INSERT INTO usuarios(nome, login, senha, criado_em, alterado_em)
-    VALUES(?, ?, ?, ?, ?);
-  `, [name, login, password, createdAt, createdAt]);
+    INSERT INTO receitas(id_usuarios, id_categorias, nome, tempo_preparo_minutos, porcoes, modo_preparo, ingredientes, criado_em, alterado_em)
+    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
+  `, [userId, categoryId, name, preparationTime, portions, method, ingredients, createdAt, createdAt]);
 
     return row;
   }
