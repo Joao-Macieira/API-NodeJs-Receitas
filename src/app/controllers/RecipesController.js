@@ -49,6 +49,42 @@ class RecipesController {
     return response.json(newRecipe);
   }
 
+  async update(request, response) {
+    const {
+      userId,
+      categoryId,
+      name,
+      preparationTime,
+      portions,
+      method,
+      ingredients,
+    } = request.body;
+
+    const { id } = request.params;
+
+    const updatedAt = new Date();
+
+    if (!id) return response.status(400);
+
+    const recipeExists = await Recipes.findById(id);
+
+    if (recipeExists.length === 0) return response.json({ error: 'Receita não encontrada' });
+
+    if (!userId) return response.json({ error: 'Dados inválidos' });
+
+    if (!categoryId) return response.json({ error: 'Selecione a categoria da sua receita' });
+
+    if (!method) return response.json({ error: 'Descreva como preparar sua receita' });
+
+    await Recipes.update(
+      id, userId, categoryId, name, preparationTime, portions, method, ingredients, updatedAt,
+    );
+
+    const newRecipe = await Recipes.findById(id);
+
+    return response.json(newRecipe);
+  }
+
   async delete(request, response) {
     const { id } = request.params;
 
