@@ -24,8 +24,10 @@ class RecipesController {
 
     if (!method) return response.json({ error: 'Descreva coo preparar sua receita' });
 
+    const createdAt = new Date();
+
     const newRecipe = await Recipes.create(
-      userId, categoryId, name, preparationTime, portions, method, ingredients,
+      userId, categoryId, name, preparationTime, portions, method, ingredients, createdAt,
     );
 
     return response.json({ newRecipe });
