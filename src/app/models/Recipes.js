@@ -18,7 +18,7 @@ class Recipes {
       FROM receitas
       LEFT JOIN usuarios ON usuarios.id = receitas.id_usuarios
       LEFT JOIN categorias ON categorias.id = receitas.id_categorias
-      WHERE id = ?
+      WHERE receitas.id = ?
     `, [id]);
 
     return row;

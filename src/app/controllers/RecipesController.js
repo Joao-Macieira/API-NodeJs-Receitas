@@ -12,9 +12,11 @@ class RecipesController {
 
     if (!id) return response.status(400);
 
-    const recipe = Recipes.findById(id);
+    const recipe = await Recipes.findById(id);
 
-    if (!recipe) return response.json({ error: 'Receita não encontrada' });
+    if (!recipe) {
+      return response.json({ error: 'Receita não encontrada' });
+    }
 
     return response.json(recipe);
   }
