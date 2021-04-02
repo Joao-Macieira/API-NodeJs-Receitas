@@ -15,6 +15,12 @@ class User {
     return row;
   }
 
+  async findById(id) {
+    const [row] = await db.query('SELECT * FROM usuarios WHERE id = ?', [id]);
+
+    return row;
+  }
+
   async create(name, login, password, createdAt) {
     const row = await db.query(`
       INSERT INTO usuarios(nome, login, senha, criado_em, alterado_em)
