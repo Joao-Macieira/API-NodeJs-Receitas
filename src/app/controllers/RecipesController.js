@@ -48,6 +48,20 @@ class RecipesController {
 
     return response.json(newRecipe);
   }
+
+  async delete(request, response) {
+    const { id } = request.params;
+
+    if (!id) return response.status(400);
+
+    const recipeExists = await Recipes.findById(id);
+
+    if (recipeExists.length === 0) return response.json({ error: 'Receita não encontrada' });
+
+    await Recipes.delete(id);
+
+    return response.json({ success: 'Receita excluída com sucesso' });
+  }
 }
 
 module.exports = new RecipesController();
