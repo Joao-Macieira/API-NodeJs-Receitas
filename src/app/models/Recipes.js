@@ -42,6 +42,25 @@ class Recipes {
     return row;
   }
 
+  async update(
+    id,
+    categoryId,
+    name = null,
+    preparationTime = null,
+    portions = null,
+    method,
+    ingredients = null,
+    updatedAt,
+  ) {
+    const row = await db.query(`
+      UPDATE receitas
+      SET id_categorias = ?, nome = ?, tempo_preparo_minutos = ?, porcoes = ?, modo_preparo = ?, ingredientes = ?, alterado_em = ?
+      WHERE id = ?
+    `, [categoryId, name, preparationTime, portions, method, ingredients, updatedAt, id]);
+
+    return row;
+  }
+
   async delete(id) {
     const row = await db.query(`
       DELETE FROM receitas
