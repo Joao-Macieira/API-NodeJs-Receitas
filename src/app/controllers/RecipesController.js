@@ -4,7 +4,19 @@ class RecipesController {
   async index(request, response) {
     const recipes = await Recipes.findAll();
 
-    return response.json({ recipes });
+    return response.json(recipes);
+  }
+
+  async show(request, response) {
+    const { id } = request.params;
+
+    if (!id) return response.status(400);
+
+    const recipe = Recipes.findById(id);
+
+    if (!recipe) return response.json({ error: 'Receita não encontrada' });
+
+    return response.json(recipe);
   }
 
   async store(request, response) {
@@ -32,7 +44,7 @@ class RecipesController {
 
     const newRecipe = await Recipes.findById(recipe.insertId);
 
-    return response.json({ newRecipe });
+    return response.json(newRecipe);
   }
 }
 
