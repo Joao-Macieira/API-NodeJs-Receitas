@@ -69,14 +69,12 @@ class RecipesController {
 
     if (recipeExists.length === 0) return response.json({ error: 'Receita não encontrada' });
 
-    if (!userId) return response.json({ error: 'Dados inválidos' });
-
     if (!categoryId) return response.json({ error: 'Selecione a categoria da sua receita' });
 
     if (!method) return response.json({ error: 'Descreva como preparar sua receita' });
 
     await Recipes.update(
-      id, userId, categoryId, name, preparationTime, portions, method, ingredients, updatedAt,
+      id, categoryId, name, preparationTime, portions, method, ingredients, updatedAt,
     );
 
     const newRecipe = await Recipes.findById(id);
