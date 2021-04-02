@@ -21,5 +21,6 @@ router.post('/user', UserController.store);
 
 // Rotas de Receitas
 router.get('/recipes', RecipesController.index);
+router.post('/recipe', RecipesController.store);
 
 module.exports = router;
