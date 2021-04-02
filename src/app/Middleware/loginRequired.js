@@ -13,12 +13,12 @@ module.exports = async (req, res, next) => {
   const [, token] = authorization.split(' ');
 
   const data = jwt.verify(token, process.env.TOKEN_SECRET);
-  const { id, email } = data;
+  const { id, login } = data;
 
   const user = await User.findOne({
     where: {
       id,
-      email,
+      login,
     },
   });
 
@@ -27,7 +27,7 @@ module.exports = async (req, res, next) => {
   }
 
   req.userId = id;
-  req.userEmail = email;
+  req.userLogin = login;
 
   next();
 };

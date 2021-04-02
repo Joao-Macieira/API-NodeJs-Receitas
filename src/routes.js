@@ -7,6 +7,8 @@ const LoginController = require('./app/controllers/LoginController');
 const RecipesController = require('./app/controllers/RecipesController');
 const UserController = require('./app/controllers/UserController');
 
+const loginRequired = require('./app/Middleware/loginRequired');
+
 router.get('/', (request, response) => response.json('Funcionou !'));
 
 // Rotas de Login
@@ -22,7 +24,7 @@ router.post('/user', UserController.store);
 // Rotas de Receitas
 router.get('/recipes', RecipesController.index);
 router.post('/recipe', RecipesController.store);
-router.get('/recipe/:id', RecipesController.show);
+router.get('/recipe/:id', loginRequired, RecipesController.show);
 router.put('/recipe/:id', RecipesController.update);
 router.delete('/recipe/:id', RecipesController.delete);
 
