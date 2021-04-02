@@ -41,6 +41,15 @@ class Recipes {
 
     return row;
   }
+
+  async delete(id) {
+    const row = await db.query(`
+      DELETE FROM receitas
+      WHERE id = ?
+    `, [id]);
+
+    return row;
+  }
 }
 
 module.exports = new Recipes();
