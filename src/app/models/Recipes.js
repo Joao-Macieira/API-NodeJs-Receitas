@@ -3,7 +3,10 @@ const db = require('../../database/index');
 class Recipes {
   async findAll() {
     const rows = await db.query(`
-      SELECT * FROM receitas
+      SELECT receitas.*, usuarios.nome AS autor, categorias.nome AS categoria
+      FROM receitas
+      LEFT JOIN usuarios ON usuarios.id = receitas.id_usuarios
+      LEFT JOIN categorias ON categorias.id = receitas.id_categorias
     `);
 
     return rows;
