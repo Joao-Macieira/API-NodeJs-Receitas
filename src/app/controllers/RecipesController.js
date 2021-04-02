@@ -51,7 +51,6 @@ class RecipesController {
 
   async update(request, response) {
     const {
-      userId,
       categoryId,
       name,
       preparationTime,
