@@ -22,7 +22,7 @@ class RecipesController {
 
     if (!categoryId) return response.json({ error: 'Selecione a categoria da sua receita' });
 
-    if (!method) return response.json({ error: 'Descreva coo preparar sua receita' });
+    if (!method) return response.json({ error: 'Descreva como preparar sua receita' });
 
     const createdAt = new Date();
 
