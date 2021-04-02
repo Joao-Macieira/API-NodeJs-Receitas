@@ -26,9 +26,11 @@ class RecipesController {
 
     const createdAt = new Date();
 
-    const newRecipe = await Recipes.create(
+    const recipe = await Recipes.create(
       userId, categoryId, name, preparationTime, portions, method, ingredients, createdAt,
     );
+
+    const newRecipe = await Recipes.findById(recipe.insertId);
 
     return response.json({ newRecipe });
   }
