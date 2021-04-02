@@ -23,9 +23,9 @@ router.post('/user', UserController.store);
 
 // Rotas de Receitas
 router.get('/recipes', RecipesController.index);
-router.post('/recipe', RecipesController.store);
+router.post('/recipe', loginRequired, RecipesController.store);
 router.get('/recipe/:id', loginRequired, RecipesController.show);
-router.put('/recipe/:id', RecipesController.update);
-router.delete('/recipe/:id', RecipesController.delete);
+router.put('/recipe/:id', loginRequired, RecipesController.update);
+router.delete('/recipe/:id', loginRequired, RecipesController.delete);
 
 module.exports = router;
