@@ -9,6 +9,14 @@ class Recipes {
     return rows;
   }
 
+  async findById(id) {
+    const row = await db.query(`
+      SELECT * FROM receitas WHERE id = ?
+    `, [id]);
+
+    return row;
+  }
+
   async create(
     userId,
     categoryId,
