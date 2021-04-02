@@ -4,6 +4,7 @@ const router = Router();
 
 const CategoryController = require('./app/controllers/CategoryController');
 const LoginController = require('./app/controllers/LoginController');
+const RecipesController = require('./app/controllers/RecipesController');
 const UserController = require('./app/controllers/UserController');
 
 router.get('/', (request, response) => response.json('Funcionou !'));
@@ -17,5 +18,8 @@ router.get('/category', CategoryController.index);
 // Rotas de Usuários
 router.get('/users', UserController.index);
 router.post('/user', UserController.store);
+
+// Rotas de Receitas
+router.get('/recipes', RecipesController.index);
 
 module.exports = router;
