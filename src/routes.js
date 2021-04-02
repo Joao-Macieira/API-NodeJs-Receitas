@@ -23,5 +23,6 @@ router.post('/user', UserController.store);
 router.get('/recipes', RecipesController.index);
 router.post('/recipe', RecipesController.store);
 router.get('/recipe/:id', RecipesController.show);
+router.delete('/recipe/:id', RecipesController.delete);
 
 module.exports = router;
