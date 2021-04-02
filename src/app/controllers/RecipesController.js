@@ -14,7 +14,7 @@ class RecipesController {
 
     const recipe = await Recipes.findById(id);
 
-    if (!recipe) {
+    if (recipe.length === 0) {
       return response.json({ error: 'Receita não encontrada' });
     }
 
