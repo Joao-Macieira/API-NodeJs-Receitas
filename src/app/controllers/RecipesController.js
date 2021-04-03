@@ -2,6 +2,14 @@ const Recipes = require('../models/Recipes');
 
 class RecipesController {
   async index(request, response) {
+    const { categoria } = request.query;
+
+    if (categoria) {
+      const recipes = await Recipes.findByCategory(categoria);
+
+      return response.json(recipes);
+    }
+
     const recipes = await Recipes.findAll();
 
     return response.json(recipes);

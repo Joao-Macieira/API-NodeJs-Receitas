@@ -12,6 +12,18 @@ class Recipes {
     return rows;
   }
 
+  async findByCategory(categoria) {
+    const rows = await db.query(`
+      SELECT receitas.*, usuarios.nome AS autor, categorias.nome AS categoria
+      FROM receitas
+      LEFT JOIN usuarios ON usuarios.id = receitas.id_usuarios
+      LEFT JOIN categorias ON categorias.id = receitas.id_categorias
+      WHERE id_categorias = ?
+    `, [categoria]);
+
+    return rows;
+  }
+
   async findById(id) {
     const row = await db.query(`
       SELECT receitas.*, usuarios.nome AS autor, categorias.nome AS categoria

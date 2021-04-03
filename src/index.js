@@ -36,4 +36,4 @@ app.use((error, request, response, next) => {
   response.sendStatus(500);
 });
 
-app.listen(3000, () => console.log(`Server start at http://localhost:${process.env.SIS_PORT}`));
+app.listen(process.env.SIS_PORT, () => console.log(`Server start at http://localhost:${process.env.SIS_PORT}`));
