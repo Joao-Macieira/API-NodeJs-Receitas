@@ -31,7 +31,6 @@ class RecipesController {
 
   async store(request, response) {
     const {
-      userId,
       categoryId,
       name,
       preparationTime,
@@ -39,6 +38,8 @@ class RecipesController {
       method,
       ingredients,
     } = request.body;
+
+    const { userId } = request;
 
     if (!userId) return response.json({ error: 'Dados inválidos' });
 
