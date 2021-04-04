@@ -11,7 +11,13 @@ class UserRecipesController {
 
     if (!userExists) return response.json({ error: 'requisição inválida' });
 
-    const myRecipes = await Recipes.findByUserId(userId, categoria);
+    if (categoria !== '') {
+      const myRecipes = await Recipes.findByUserIdFilter(userId, categoria);
+
+      return response.json(myRecipes);
+    }
+
+    const myRecipes = await Recipes.findByUserId(userId);
 
     return response.json(myRecipes);
   }
