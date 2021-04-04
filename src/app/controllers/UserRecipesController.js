@@ -3,17 +3,17 @@ const User = require('../models/User');
 
 class UserRecipesController {
   async index(request, response) {
-    const { login } = request.query;
+    const { categoria } = request.query;
 
-    const userExists = await User.findByLogin(login);
+    const { userId } = request;
+
+    const userExists = await User.findById(userId);
 
     if (!userExists) return response.json({ error: 'requisição inválida' });
 
-    const myRecipes = await Recipes.findByUserId(userExists.id);
+    const myRecipes = await Recipes.findByUserId(userId, categoria);
 
-    console.log(myRecipes);
-
-    return 0;
+    return response.json(myRecipes);
   }
 }
 
