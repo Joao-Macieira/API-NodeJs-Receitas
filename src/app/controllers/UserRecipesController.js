@@ -9,7 +9,7 @@ class UserRecipesController {
 
     if (!userExists) return response.json({ error: 'requisição inválida' });
 
-    const myRecipes = await Recipes.findByLogin(login);
+    const myRecipes = await Recipes.findByUserId(userExists.id);
 
     console.log(myRecipes);
 

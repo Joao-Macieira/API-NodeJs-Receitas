@@ -28,4 +28,6 @@ router.get('/recipe/:id', loginRequired, RecipesController.show);
 router.put('/recipe/:id', loginRequired, RecipesController.update);
 router.delete('/recipe/:id', loginRequired, RecipesController.delete);
 
+// Rotas User-Recipes
+
 module.exports = router;
