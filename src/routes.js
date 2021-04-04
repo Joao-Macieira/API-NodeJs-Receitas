@@ -6,6 +6,7 @@ const CategoryController = require('./app/controllers/CategoryController');
 const LoginController = require('./app/controllers/LoginController');
 const RecipesController = require('./app/controllers/RecipesController');
 const UserController = require('./app/controllers/UserController');
+const UserRecipesController = require('./app/controllers/UserRecipesController');
 
 const loginRequired = require('./app/Middleware/loginRequired');
 
@@ -29,5 +30,6 @@ router.put('/recipe/:id', loginRequired, RecipesController.update);
 router.delete('/recipe/:id', loginRequired, RecipesController.delete);
 
 // Rotas User-Recipes
+router.get('/myrecipes', loginRequired, UserRecipesController.index);
 
 module.exports = router;
